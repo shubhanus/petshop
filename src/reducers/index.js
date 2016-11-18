@@ -1,3 +1,7 @@
 // Set up your root reducer here...
  import { combineReducers } from 'redux';
- export default combineReducers;
+import PetDataReducers from './PetDataReducer';
+
+ export default combineReducers({
+     PetDataReducers
+ })

@@ -3,8 +3,8 @@ import React from "react";
 export default class PetBref extends React.Component {
     render() {
         let bref;
-        if(this.props.bref) {
-            bref = this.props.bref;
+        if(this.props.desc) {
+            bref = this.props.desc;
         }
         return (
             <div className="pet_bref">

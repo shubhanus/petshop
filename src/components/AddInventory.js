@@ -1,8 +1,8 @@
 import React from "react";
 
 export default class AddInventory extends React.Component {
-    constructor() {
-        super();
+    constructor(props, context) {
+        super(props, context);
         this.handleUserClick = this.handleUserClick.bind(this);       
     }
     handleUserClick() {

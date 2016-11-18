@@ -1,13 +1,19 @@
 import React from "react";
-import PetDetails from "./PetDetails"
+import PetDetails from "./PetDetails";
+import PetDesctiption from "../actions/PetDescription";
 
 export default class Category extends React.Component {
-    constructor() {
-        super();
+    constructor(props, context) {
+        super(props, context);
         this.handelClick = this.handelClick.bind(this);
+        this.props = {
+            bref: ''
+        }; 
     }
     handelClick() {
-        console.log(this);
+        
+        // debugger;
+        // this.props.catClick(this.props.elemKey);
     }
     render() {
         return (

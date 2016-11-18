@@ -1,18 +1,22 @@
 import React from "react";
+
 import Category from "./Category";
 import AddInventory from "./AddInventory";
+import getPetData from "../actions/PetDataActions";
+
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+
 import * as firebase from "firebase";
 import { Config } from "../constants/FirebaseConfig";
+
 import _ from "lodash";
 
 firebase.initializeApp(Config);
 
-export default class CategoryWrapper extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            cats: ''
-        }
+export class CategoryWrapper extends React.Component {
+    constructor(props, context) {
+        super(props, context);
         this.petRef=firebase.database().ref("/pets");
         this.handelClick = this.handelClick.bind(this);
     }
@@ -20,11 +24,9 @@ export default class CategoryWrapper extends React.Component {
         this.state = {
             cats: this.props.data
         };
-        this.petRef.on("value", (snapshot) => {
-            this.setState({cats : snapshot.val()});
-        }, function (errorObject) {
-            console.log("The read failed: " + errorObject.code);
-        });
+    }
+    componentDidMount() {
+        this.props.actions(this.petRef);
     }
     handelClick(cat) {
         let key = 'cat-' + cat.name + '-' + cat.age;
@@ -32,10 +34,10 @@ export default class CategoryWrapper extends React.Component {
     }
     render() {
         let cat = [];
-        if (this.state.cats) {
-            _.each(this.state.cats, function(val, key) {
+        if (this.props.cats.fatched && this.props.cats.data) {
+            _.each(this.props.cats.data, (val, key) => {
                 cat.push(
-                    <Category pet={val} key={key} />
+                    <Category pet={val} key={key} elemKey={key} />
                 );
             });
         }
@@ -47,3 +49,13 @@ export default class CategoryWrapper extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+  return {cats: state.PetDataReducers};
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(getPetData, dispatch)
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryWrapper);
