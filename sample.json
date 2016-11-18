@@ -1,0 +1,28 @@
+{
+  "pets":[
+    {
+        "age": 20,
+        "img": "assets/images/pet-1.jpg",
+        "name": "a",
+        "type": "dog-b"
+    },
+    {
+        "age": 20,
+        "img": "assets/images/pet-2.jpg",
+        "name": "b",
+        "type": "dog-c"
+    },
+    {
+        "age": 20,
+        "img": "assets/images/pet-4.jpg",
+        "name": "c",
+        "type": "dog-c"
+    },
+    {
+        "age": 20,
+        "img": "assets/images/pet-3.jpg",
+        "name": "d",
+        "type": "dog-a"
+    }
+  ] 
+}
